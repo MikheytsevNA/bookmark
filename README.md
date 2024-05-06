@@ -1,1 +1,3 @@
-[![Run ESLint on Pull Requests](https://github.com/MikheytsevNA/bookmark/actions/workflows/main.yml/badge.svg)](https://github.com/MikheytsevNA/bookmark/actions/workflows/main.yml)
+[![Run built, test and lint](https://github.com/MikheytsevNA/bookmark/actions/workflows/main.yml/badge.svg)](https://github.com/MikheytsevNA/bookmark/actions/workflows/main.yml)
+
+[deploy](https://mikheytsevna.github.io/bookmark/)
