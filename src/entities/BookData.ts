@@ -5,6 +5,7 @@ interface Book {
   description: string;
   published: number;
   author: string;
+  isInFavorites: boolean;
 }
 
 export type rawBookData = {
@@ -25,6 +26,7 @@ export class BookData implements Book {
   public description = "";
   public published: number;
   public author = "";
+  public isInFavorites = false;
 
   constructor(data: rawBookData) {
     this.id = data.id as string;
