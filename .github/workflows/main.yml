@@ -1,4 +1,4 @@
-name: Run ESLint on Pull Requests
+name: Run build, test and lint on Pull Requests
 
 on:
   push:
