@@ -2,6 +2,13 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
 import { Navigation } from "./components/Navigation/Navigation.tsx";
+import { Login } from "./components/Login/Login.tsx";
+import { SignIn } from "./components/SignIn/SignIn.tsx";
+import { Logout } from "./components/Logout/Logout.tsx";
+import { Favorites } from "./components/Favorites/Favorites.tsx";
+import { History } from "./components/History/History.tsx";
+import { logedInLoader } from "./util/logedInLoader.ts";
+import { logedOutLoader } from "./util/logedOutLoader.ts";
 import "./index.css";
 
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
@@ -26,23 +33,28 @@ const router = createBrowserRouter([
       },
       {
         path: "/signin",
-        element: <div>Registration form</div>,
+        element: <SignIn />,
+        loader: logedOutLoader,
       },
       {
         path: "/login",
-        element: <div> log in form</div>,
+        element: <Login />,
+        loader: logedOutLoader,
       },
       {
         path: "/logout",
-        element: <div> Sign out actions and redirect to </div>,
+        element: <Logout />,
+        loader: logedInLoader,
       },
       {
         path: "/history",
-        element: <div> History list from LS</div>,
+        element: <History />,
+        loader: logedInLoader,
       },
       {
         path: "/favorites",
-        element: <div> Favorite book list from LS (lazy)</div>,
+        element: <Favorites />,
+        loader: logedInLoader,
       },
     ],
   },
