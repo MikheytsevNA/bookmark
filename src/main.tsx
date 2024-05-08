@@ -2,7 +2,6 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
 import { Navigation } from "./components/Navigation/Navigation.tsx";
-import { Login } from "./components/Login/Login.tsx";
 import { SignIn } from "./components/SignIn/SignIn.tsx";
 import { Logout } from "./components/Logout/Logout.tsx";
 import { Favorites } from "./components/Favorites/Favorites.tsx";
@@ -28,8 +27,12 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <App /> },
       {
-        path: "/search/:id",
+        path: "/books/:id",
         element: <div>Detailed book desc (lazy)</div>,
+      },
+      {
+        path: "/search",
+        element: <div>Search page</div>,
       },
       {
         path: "/signin",
@@ -38,8 +41,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/login",
-        element: <Login />,
-        loader: logedOutLoader,
+        lazy: () => import("./components/Login/Login"),
       },
       {
         path: "/logout",
