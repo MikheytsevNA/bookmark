@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
+import { Navigation } from "./components/Navigation/Navigation.tsx";
 import "./index.css";
 
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
@@ -13,7 +14,7 @@ const router = createBrowserRouter([
     path: "/",
     element: (
       <>
-        <div>Navbar</div>
+        <Navigation />
         <Outlet />
       </>
     ),
@@ -24,15 +25,15 @@ const router = createBrowserRouter([
         element: <div>Detailed book desc (lazy)</div>,
       },
       {
-        path: "/signon",
+        path: "/signin",
         element: <div>Registration form</div>,
       },
       {
-        path: "/signin",
+        path: "/login",
         element: <div> log in form</div>,
       },
       {
-        path: "/signout",
+        path: "/logout",
         element: <div> Sign out actions and redirect to </div>,
       },
       {

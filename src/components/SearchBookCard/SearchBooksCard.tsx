@@ -1,7 +1,7 @@
 import { useState, useMemo } from "react";
-import { BookData, rawBookData } from "../entities/BookData";
-import { getRawSearchResults } from "../util/getSearchResults";
-import { BookCard } from "./BookCard";
+import { BookData, rawBookData } from "../../entities/BookData";
+import { getRawSearchResults } from "../../util/getSearchResults";
+import { BookCard } from "../BookCard/BookCard";
 import "./SearchBooksCard.css";
 
 type SearchBookCardsProps = { searchQuery: string };
