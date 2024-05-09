@@ -16,7 +16,6 @@ export function Component() {
         initialValues={{ email: "", password: "" }}
         onSubmit={async (values, { setSubmitting }) => {
           localStorage.setItem("loggedInEmail", values.email);
-          document.querySelector(".navbar")?.classList.toggle("active");
           dispatch(login(values.email));
           setSubmitting(false);
           navigate("/");

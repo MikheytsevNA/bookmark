@@ -14,7 +14,6 @@ export function SignIn() {
         onSubmit={async (values, { setSubmitting }) => {
           new RegistrationHandler({ ...values, favorites: [], history: [] });
           await localStorage.setItem("loggedInEmail", values.email);
-          document.querySelector(".navbar")?.classList.toggle("active");
           dispatch(login(values.email));
           setSubmitting(false);
           navigate("/");
