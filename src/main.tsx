@@ -8,6 +8,8 @@ import { Favorites } from "./components/Favorites/Favorites.tsx";
 import { History } from "./components/History/History.tsx";
 import { logedInLoader } from "./util/logedInLoader.ts";
 import { logedOutLoader } from "./util/logedOutLoader.ts";
+import { getLoginStatus } from "./util/getLoginstatus";
+
 import "./index.css";
 
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
@@ -24,6 +26,7 @@ const router = createBrowserRouter([
         <Outlet />
       </>
     ),
+    action: () => getLoginStatus(),
     children: [
       { index: true, element: <App /> },
       {

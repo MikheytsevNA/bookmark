@@ -1,3 +1,8 @@
+import { useNavigate } from "react-router-dom";
+
 export function Logout() {
-  return <div> Sign out actions and redirect to root</div>;
+  const navigate = useNavigate();
+  navigate("/");
+  localStorage.removeItem("loggedInEmail");
+  return <div>Выходим...</div>;
 }

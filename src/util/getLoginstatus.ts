@@ -1,3 +1,3 @@
 export function getLoginStatus() {
-  return localStorage.getItem("isLoggedIn");
+  return localStorage.getItem("loggedInEmail");
 }

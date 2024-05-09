@@ -1,14 +1,23 @@
-import { getLoginStatus } from "../../util/getLoginstatus";
+import { useEffect, useState } from "react";
 import book from "../../assets/icons8-bookmark-128.svg";
 import "./Navigation.css";
-import { Link } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 
 export function Navigation() {
-  const isLoggedIn = getLoginStatus();
+  const isLoggedIn = useLoaderData();
+  const [token, setToken] = useState<string | null>(null);
+  useEffect(() => {
+    async function updateToken() {
+      const status = (await isLoggedIn) as string | null;
+      setToken(status);
+    }
+    updateToken();
+  }, [isLoggedIn]);
+  console.log(token);
   return (
     <header>
       <nav className="navbar">
-        {isLoggedIn ? (
+        {token ? (
           <div className="container-fluid">
             <Link to="/">
               <img src={book} id="book-logo" className="navbar-brand"></img>
@@ -25,7 +34,7 @@ export function Navigation() {
                 </Link>
               </li>
               <li className="nav-item mx-1">
-                <Link to="/logщге" className="nav-link">
+                <Link to="/logout" className="nav-link">
                   Выход
                 </Link>
               </li>

@@ -3,7 +3,8 @@ import { redirect } from "react-router-dom";
 
 export async function logedInLoader() {
   try {
-    if (getLoginStatus() === null) {
+    const response = await getLoginStatus();
+    if (response === null) {
       throw Error("Доступно только Пользователям");
     }
   } catch (error) {
