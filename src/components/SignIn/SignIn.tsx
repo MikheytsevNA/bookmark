@@ -1,9 +1,12 @@
 import { Field, Form, Formik } from "formik";
 import { RegistrationHandler } from "../../entities/RegistrationManage";
 import { useNavigate } from "react-router-dom";
+import { useAppDispatch } from "../../App/hooks";
+import { login } from "../../App/store";
 
 export function SignIn() {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
   return (
     <div>
       <Formik
@@ -11,6 +14,8 @@ export function SignIn() {
         onSubmit={async (values, { setSubmitting }) => {
           new RegistrationHandler({ ...values, favorites: [], history: [] });
           await localStorage.setItem("loggedInEmail", values.email);
+          document.querySelector(".navbar")?.classList.toggle("active");
+          dispatch(login(values.email));
           setSubmitting(false);
           navigate("/");
         }}

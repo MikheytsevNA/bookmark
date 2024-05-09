@@ -4,15 +4,20 @@ import { redirect } from "react-router-dom";
 import { Field, Form, Formik } from "formik";
 import { RegistrationHandler } from "../../entities/RegistrationManage";
 import { useNavigate } from "react-router-dom";
+import { useAppDispatch } from "../../App/hooks";
+import { login } from "../../App/store";
 
 export function Component() {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
   return (
     <div>
       <Formik
         initialValues={{ email: "", password: "" }}
         onSubmit={async (values, { setSubmitting }) => {
           localStorage.setItem("loggedInEmail", values.email);
+          document.querySelector(".navbar")?.classList.toggle("active");
+          dispatch(login(values.email));
           setSubmitting(false);
           navigate("/");
         }}
@@ -20,10 +25,12 @@ export function Component() {
           const errors: { [key: string]: string } = {};
           if (
             !RegistrationHandler.getRegisteredUsers()?.find(
-              (item) => item.email === values.email,
+              (item) =>
+                item.email === values.email &&
+                item.password === values.password,
             )
           ) {
-            errors.email = "Неправильные логин и/или пароль";
+            errors.email = "Неправильный(ые) логин и/или пароль";
           }
           return errors;
         }}

@@ -11,6 +11,7 @@ export function SearchBookCards({ searchQuery }: SearchBookCardsProps) {
   const [resultList, setResultList] = useState<BookData[]>([]);
   const query = searchQuery === "" ? "Dune" : searchQuery;
   useMemo(
+    // мне нужно выполнить функцию getRawSearchResults один раз - можно использовать useEffect или useMemo, разницы нет(???)
     () =>
       getRawSearchResults(query).then((response) => {
         setResultList(() =>

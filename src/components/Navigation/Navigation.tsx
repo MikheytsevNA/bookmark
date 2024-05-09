@@ -1,23 +1,14 @@
-import { useEffect, useState } from "react";
 import book from "../../assets/icons8-bookmark-128.svg";
 import "./Navigation.css";
-import { Link, useLoaderData } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { useAppSelector } from "../../App/hooks";
 
 export function Navigation() {
-  const isLoggedIn = useLoaderData();
-  const [token, setToken] = useState<string | null>(null);
-  useEffect(() => {
-    async function updateToken() {
-      const status = (await isLoggedIn) as string | null;
-      setToken(status);
-    }
-    updateToken();
-  }, [isLoggedIn]);
-  console.log(token);
+  const loggedInEmail = useAppSelector((state) => state.value);
   return (
     <header>
       <nav className="navbar">
-        {token ? (
+        {loggedInEmail ? (
           <div className="container-fluid">
             <Link to="/">
               <img src={book} id="book-logo" className="navbar-brand"></img>
