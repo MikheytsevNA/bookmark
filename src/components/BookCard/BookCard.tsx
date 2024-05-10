@@ -1,5 +1,5 @@
-import { BookData } from "../entities/BookData";
-import heart from "../assets/heart.svg";
+import { BookData } from "../../entities/BookData";
+import heart from "../../assets/heart.svg";
 import "./BookCard.css";
 
 type BookCardProps = { item: BookData };

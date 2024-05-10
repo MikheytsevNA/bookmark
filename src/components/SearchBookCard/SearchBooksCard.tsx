@@ -1,7 +1,7 @@
 import { useState, useMemo } from "react";
-import { BookData, rawBookData } from "../entities/BookData";
-import { getRawSearchResults } from "../util/getSearchResults";
-import { BookCard } from "./BookCard";
+import { BookData, rawBookData } from "../../entities/BookData";
+import { getRawSearchResults } from "../../util/getSearchResults";
+import { BookCard } from "../BookCard/BookCard";
 import "./SearchBooksCard.css";
 
 type SearchBookCardsProps = { searchQuery: string };
@@ -11,6 +11,7 @@ export function SearchBookCards({ searchQuery }: SearchBookCardsProps) {
   const [resultList, setResultList] = useState<BookData[]>([]);
   const query = searchQuery === "" ? "Dune" : searchQuery;
   useMemo(
+    // мне нужно выполнить функцию getRawSearchResults один раз - можно использовать useEffect или useMemo, разницы нет(???)
     () =>
       getRawSearchResults(query).then((response) => {
         setResultList(() =>
