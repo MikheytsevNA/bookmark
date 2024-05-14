@@ -10,6 +10,7 @@ import { Favorites } from "./components/Favorites/Favorites.tsx";
 import { History } from "./components/History/History.tsx";
 import { logedInLoader } from "./util/logedInLoader.ts";
 import { logedOutLoader } from "./util/logedOutLoader.ts";
+import { Search } from "./components/Search/Search.tsx";
 import { store } from "./App/store.ts";
 
 import "./index.css";
@@ -40,7 +41,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/search",
-        element: <div>Search page</div>,
+        element: <Search />,
       },
       {
         path: "/signin",

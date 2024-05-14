@@ -5,3 +5,6 @@
   flex-wrap: wrap;
   justify-content: space-around;
 }
+#quntity-select {
+  width: fit-content;
+}
