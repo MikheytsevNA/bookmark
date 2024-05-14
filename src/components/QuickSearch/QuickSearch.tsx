@@ -10,17 +10,21 @@ export function QuickSearch({ debouncedSearch }: { debouncedSearch: string }) {
   let quickSearchResults;
   if (isFetching) {
     quickSearchResults = (
-      <div className="quick-search border list-group p-1">Loading...</div>
+      <div className="quick-search border list-group p-1">Загружаем...</div>
     );
   } else if (isSuccess) {
     quickSearchResults = (
       <ul className="quick-search border rounded list-group p-1">
-        {data.map((item) => (
-          <QuickBookCard
-            item={{ ...item, isInFavorites: false }}
-            key={item.id}
-          ></QuickBookCard>
-        ))}
+        {!data ? (
+          <div>Ничего не было найдено</div>
+        ) : (
+          data.map((item) => (
+            <QuickBookCard
+              item={{ ...item, isInFavorites: false }}
+              key={item.id}
+            ></QuickBookCard>
+          ))
+        )}
       </ul>
     );
   }

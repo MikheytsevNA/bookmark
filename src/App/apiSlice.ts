@@ -8,20 +8,25 @@ export const apiSlice = createApi({
       query: (query: string) => {
         return `/v1/volumes${query}`;
       },
-      transformResponse: (response: { items: rawBookData[] }) =>
-        response.items.map((item) => {
-          return {
-            id: item.id,
-            title: item.volumeInfo.title,
-            description: item.volumeInfo.description,
-            published: item.volumeInfo.publishedDate,
-            author: item.volumeInfo.authors[0] ?? "",
-            images: {
-              small: item.volumeInfo.imageLinks.smallThumbnail,
-              big: item.volumeInfo.imageLinks.thumbnail,
-            },
-          };
-        }),
+      transformResponse: (response: { items: rawBookData[] }) => {
+        try {
+          return response.items.map((item) => {
+            return {
+              id: item.id,
+              title: item.volumeInfo.title,
+              description: item.volumeInfo.description,
+              published: item.volumeInfo.publishedDate,
+              author: item.volumeInfo.authors[0] ?? "",
+              images: {
+                small: item.volumeInfo.imageLinks.smallThumbnail,
+                big: item.volumeInfo.imageLinks.thumbnail,
+              },
+            };
+          });
+        } catch {
+          return null;
+        }
+      },
     }),
   }),
 });

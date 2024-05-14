@@ -21,12 +21,16 @@ export function Search() {
         <SearchBar currentSearch={titleName} />
 
         <ul className="book-cards">
-          {data.map((item) => (
-            <BookCard
-              item={{ ...item, isInFavorites: false }}
-              key={item.id}
-            ></BookCard>
-          ))}
+          {!data ? (
+            <div>Ничего не было найдено</div>
+          ) : (
+            data.map((item) => (
+              <BookCard
+                item={{ ...item, isInFavorites: false }}
+                key={item.id}
+              ></BookCard>
+            ))
+          )}
         </ul>
       </>
     );
