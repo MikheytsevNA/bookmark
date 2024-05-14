@@ -25,5 +25,5 @@ export function getSearchResultsString(query: string, maxResults = "10") {
   params.set("q", `${query}`);
   params.set("maxResults", `${maxResults}`);
   params.set("key", `${import.meta.env.VITE_GOOGLE_API_KEY}`);
-  return urlSearch.toString();
+  return urlSearch.search;
 }

@@ -1,5 +1,4 @@
 interface Book {
-  status: boolean;
   id: string;
   images: { small: string; big: string };
   title: string;
@@ -11,6 +10,7 @@ interface Book {
 
 export type rawBookData = {
   [key: string]: unknown;
+  id: string;
   volumeInfo: {
     title: string;
     imageLinks: { thumbnail: string; smallThumbnail: string };
@@ -28,22 +28,16 @@ export class BookData implements Book {
   public published = 0;
   public author = "";
   public isInFavorites = false;
-  public status: boolean;
 
   constructor(data: rawBookData) {
-    try {
-      this.id = data.id as string;
-      this.title = data.volumeInfo.title;
-      this.description = data.volumeInfo.description;
-      this.published = data.volumeInfo.publishedDate;
-      this.author = data.volumeInfo.authors[0] ?? "";
-      this.images = {
-        small: data.volumeInfo.imageLinks.smallThumbnail,
-        big: data.volumeInfo.imageLinks.thumbnail,
-      };
-      this.status = true;
-    } catch {
-      this.status = false;
-    }
+    this.id = data.id as string;
+    this.title = data.volumeInfo.title;
+    this.description = data.volumeInfo.description;
+    this.published = data.volumeInfo.publishedDate;
+    this.author = data.volumeInfo.authors[0] ?? "";
+    this.images = {
+      small: data.volumeInfo.imageLinks.smallThumbnail,
+      big: data.volumeInfo.imageLinks.thumbnail,
+    };
   }
 }
