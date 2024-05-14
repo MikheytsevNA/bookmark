@@ -2,7 +2,7 @@ import { Field, Form, Formik } from "formik";
 import { RegistrationHandler } from "../../entities/RegistrationManage";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../../App/hooks";
-import { login } from "../../App/store";
+import { login } from "../../App/navBarSlice";
 
 export function SignIn() {
   const navigate = useNavigate();

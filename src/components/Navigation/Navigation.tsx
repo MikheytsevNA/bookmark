@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { useAppSelector } from "../../App/hooks";
 
 export function Navigation() {
-  const loggedInEmail = useAppSelector((state) => state.value);
+  const loggedInEmail = useAppSelector((state) => state.navbar.value);
   return (
     <header>
       <nav className="navbar">

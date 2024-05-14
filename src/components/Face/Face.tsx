@@ -3,7 +3,6 @@ import { SearchBookCards } from "../SearchBookCard/SearchBooksCard";
 
 function Face() {
   return <SearchBookCards searchQuery="Lord of the rings"></SearchBookCards>;
-  return;
 }
 
 export default Face;

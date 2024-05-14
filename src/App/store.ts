@@ -1,21 +1,35 @@
-import { createSlice, configureStore } from "@reduxjs/toolkit";
+import {
+  configureStore,
+  createListenerMiddleware,
+  isAnyOf,
+} from "@reduxjs/toolkit";
+import { apiSlice } from "./apiSlice";
+import { navbarSlice } from "./navBarSlice";
 
-const navbarSlice = createSlice({
-  name: "navbarLogIn",
-  initialState: {
-    value: null,
-  },
-  reducers: {
-    login: (state, action) => ({ ...state, value: action.payload }),
-    logout: (state) => ({ ...state, value: null }),
+const listenerMiddleware = createListenerMiddleware();
+
+listenerMiddleware.startListening({
+  matcher: isAnyOf(navbarSlice.actions.login, navbarSlice.actions.logout),
+  effect: async (action) => {
+    if (action.type === "navbarLogIn/logout") {
+      console.log(`Пользователь ${action.payload} разлогинился`);
+    } else {
+      console.log(`Пользователь ${action.payload} залогинился`);
+    }
   },
 });
 
 export const store = configureStore({
-  reducer: navbarSlice.reducer,
+  reducer: {
+    navbar: navbarSlice.reducer,
+    [apiSlice.reducerPath]: apiSlice.reducer,
+  },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat([
+      apiSlice.middleware,
+      listenerMiddleware.middleware,
+    ]),
 });
-
-export const { login, logout } = navbarSlice.actions;
 
 // Infer the `RootState` and `AppDispatch` types from the store itself
 export type RootState = ReturnType<typeof store.getState>;
