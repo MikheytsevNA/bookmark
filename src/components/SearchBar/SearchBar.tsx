@@ -39,7 +39,7 @@ export function SearchBar({ currentSearch }: { currentSearch: string }) {
             }}
           ></input>
         </label>
-        {quickSearchVisibility ? (
+        {quickSearchVisibility && debouncedSearch !== "" ? (
           <QuickSearch debouncedSearch={debouncedSearch}></QuickSearch>
         ) : null}
       </div>
