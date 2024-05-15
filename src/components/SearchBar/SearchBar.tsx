@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { useDebounce } from "../../util/useDebounce";
 import { QuickSearch } from "../QuickSearch/QuickSearch";
 import "./SearchBar.css";
+import { RegistrationHandler } from "../../entities/RegistrationManage";
+import { getLoginStatus } from "../../util/getLoginstatus";
 
 export function SearchBar({ currentSearch }: { currentSearch: string }) {
   const navigate = useNavigate();
@@ -32,9 +34,11 @@ export function SearchBar({ currentSearch }: { currentSearch: string }) {
             }}
             onKeyDown={(event) => {
               if (event.key === "Enter") {
-                navigate(
-                  `/search?q=${debouncedSearch}&maxResults=${selectedOption}`,
+                RegistrationHandler.changeHistory(
+                  getLoginStatus()!,
+                  debouncedSearch,
                 );
+                navigate(`/search?q=${search}&maxResults=${selectedOption}`);
               }
             }}
           ></input>
@@ -57,7 +61,8 @@ export function SearchBar({ currentSearch }: { currentSearch: string }) {
       <button
         className="btn btn-outline-secondary mx-2 rounded"
         onClick={() => {
-          navigate(`/search?q=${debouncedSearch}&maxResults=${selectedOption}`);
+          RegistrationHandler.changeHistory(getLoginStatus()!, debouncedSearch);
+          navigate(`/search?q=${search}&maxResults=${selectedOption}`);
         }}
       >
         Поиск

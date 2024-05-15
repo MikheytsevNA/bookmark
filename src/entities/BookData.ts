@@ -1,3 +1,6 @@
+import { getLoginStatus } from "../util/getLoginstatus";
+import { RegistrationHandler } from "./RegistrationManage";
+
 interface Book {
   id: string;
   images: { small: string; big: string };
@@ -39,5 +42,15 @@ export class BookData implements Book {
       small: data.volumeInfo.imageLinks.smallThumbnail,
       big: data.volumeInfo.imageLinks.thumbnail,
     };
+    const registrationObj = RegistrationHandler.getRegisteredUsers();
+    if (!registrationObj) {
+      return;
+    }
+    this.isInFavorites = registrationObj
+      .find(
+        (user: { favorites: string[]; email: string }) =>
+          user.email === getLoginStatus(),
+      )!
+      .favorites.includes(this.id);
   }
 }
