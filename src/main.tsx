@@ -37,7 +37,7 @@ const router = createBrowserRouter([
       { index: true, element: <Face /> },
       {
         path: "/books/:id",
-        element: <div>Detailed book desc (lazy)</div>,
+        lazy: () => import("./components/Detailed/Detailed.tsx"),
       },
       {
         path: "/search",

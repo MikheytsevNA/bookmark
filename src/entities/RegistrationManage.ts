@@ -52,10 +52,8 @@ export class RegistrationHandler {
       return;
     }
     const currentUser = registrationObj.find((user) => user.email === email)!;
-    const favIndex = currentUser.history.indexOf(query);
-    if (favIndex === -1) {
-      currentUser?.history.push(query);
-    }
+
+    currentUser?.history.push(`${query} - ${new Date().toUTCString()}`);
     localStorage.setItem(
       "registeredUsers",
       JSON.stringify(

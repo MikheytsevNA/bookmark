@@ -28,8 +28,30 @@ export const apiSlice = createApi({
         }
       },
     }),
+    getVolume: builder.query({
+      query: (query: string) => {
+        return `/v1/volumes/${query}`;
+      },
+      transformResponse: (response: rawBookData) => {
+        try {
+          return {
+            id: response.id,
+            title: response.volumeInfo.title,
+            description: response.volumeInfo.description,
+            published: response.volumeInfo.publishedDate,
+            author: response.volumeInfo.authors[0] ?? "",
+            images: {
+              small: response.volumeInfo.imageLinks.smallThumbnail,
+              big: response.volumeInfo.imageLinks.thumbnail,
+            },
+          };
+        } catch {
+          return null;
+        }
+      },
+    }),
   }),
 });
 
 // Export the auto-generated hook for the `getPosts` query endpoint
-export const { useGetVolumesQuery } = apiSlice;
+export const { useGetVolumesQuery, useGetVolumeQuery } = apiSlice;
