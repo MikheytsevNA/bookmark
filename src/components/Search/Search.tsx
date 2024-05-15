@@ -1,6 +1,6 @@
 import { getSearchResultsString } from "../../util/getSearchResults";
 import { BookCard } from "../BookCard/BookCard";
-import { SearchBar } from "../SearchBar/SearchBar";
+import SearchBar from "../SearchBar/SearchBar";
 import { useSearchParams } from "react-router-dom";
 import { useGetVolumesQuery } from "../../App/apiSlice";
 import { getLoginStatus } from "../../util/getLoginstatus";
@@ -11,12 +11,13 @@ function checkIfFavorite(id: string) {
   if (!registrationObj) {
     return false;
   }
-  const isInFavorites = registrationObj
-    .find(
-      (user: { favorites: string[]; email: string }) =>
-        user.email === getLoginStatus(),
-    )!
-    .favorites.includes(id);
+
+  const user = registrationObj.find(
+    (user: { favorites: string[]; email: string }) =>
+      user.email === getLoginStatus(),
+  );
+  const isInFavorites = user ? user.favorites.includes(id) : false;
+
   return isInFavorites;
 }
 
