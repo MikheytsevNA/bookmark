@@ -5,8 +5,9 @@ import { QuickSearch } from "../QuickSearch/QuickSearch";
 import "./SearchBar.css";
 import { RegistrationHandler } from "../../entities/RegistrationManage";
 import { getLoginStatus } from "../../util/getLoginstatus";
+import PropTypes from "prop-types";
 
-export function SearchBar({ currentSearch }: { currentSearch: string }) {
+function SearchBar({ currentSearch }: { currentSearch: string }) {
   const navigate = useNavigate();
   const [search, setSearch] = useState(currentSearch);
   const debouncedSearch = useDebounce(search, 500);
@@ -70,3 +71,9 @@ export function SearchBar({ currentSearch }: { currentSearch: string }) {
     </div>
   );
 }
+
+SearchBar.propTypes = {
+  name: PropTypes.string,
+};
+
+export default SearchBar;

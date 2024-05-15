@@ -46,11 +46,10 @@ export class BookData implements Book {
     if (!registrationObj) {
       return;
     }
-    this.isInFavorites = registrationObj
-      .find(
-        (user: { favorites: string[]; email: string }) =>
-          user.email === getLoginStatus(),
-      )!
-      .favorites.includes(this.id);
+    const user = registrationObj.find(
+      (user: { favorites: string[]; email: string }) =>
+        user.email === getLoginStatus(),
+    );
+    this.isInFavorites = user ? user.favorites.includes(this.id) : false;
   }
 }
