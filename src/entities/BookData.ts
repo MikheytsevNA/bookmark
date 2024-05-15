@@ -1,5 +1,4 @@
-import { getLoginStatus } from "../util/getLoginstatus";
-import { RegistrationHandler } from "./RegistrationManage";
+import { checkIfFavorite } from "../util/checkIfFavorite";
 
 interface Book {
   id: string;
@@ -42,14 +41,6 @@ export class BookData implements Book {
       small: data.volumeInfo.imageLinks.smallThumbnail,
       big: data.volumeInfo.imageLinks.thumbnail,
     };
-    const registrationObj = RegistrationHandler.getRegisteredUsers();
-    if (!registrationObj) {
-      return;
-    }
-    const user = registrationObj.find(
-      (user: { favorites: string[]; email: string }) =>
-        user.email === getLoginStatus(),
-    );
-    this.isInFavorites = user ? user.favorites.includes(this.id) : false;
+    this.isInFavorites = checkIfFavorite(this.id);
   }
 }

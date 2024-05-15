@@ -20,7 +20,7 @@ export function Navigation() {
               setIsDarkTheme((state: boolean) => !state);
             }}
           >
-            Switch theme
+            Сменить тему
           </button>
         </nav>
       </ThemeContext.Provider>

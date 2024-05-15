@@ -6,20 +6,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useGetVolumeQuery } from "../../App/apiSlice";
 import "./Detailed.css";
-
-function isInFavorites(id: string) {
-  const registrationObj = RegistrationHandler.getRegisteredUsers();
-  if (!registrationObj) {
-    return false;
-  }
-  const isInFavorites = registrationObj
-    .find(
-      (user: { favorites: string[]; email: string }) =>
-        user.email === getLoginStatus(),
-    )!
-    .favorites.includes(id);
-  return !isInFavorites ? false : true;
-}
+import { checkIfFavorite } from "../../util/checkIfFavorite";
 
 export function Component() {
   const params = useParams();
@@ -27,7 +14,7 @@ export function Component() {
   const { data, isFetching, isSuccess } = useGetVolumeQuery(id);
   const loggedInEmail = getLoginStatus();
 
-  const [favStatus, setFavStatus] = useState(isInFavorites(id));
+  const [favStatus, setFavStatus] = useState(checkIfFavorite(id));
 
   const throttledStatus = useThrottle(favStatus, 200);
   useEffect(() => {

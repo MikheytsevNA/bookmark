@@ -3,23 +3,7 @@ import { BookCard } from "../BookCard/BookCard";
 import SearchBar from "../SearchBar/SearchBar";
 import { useSearchParams } from "react-router-dom";
 import { useGetVolumesQuery } from "../../App/apiSlice";
-import { getLoginStatus } from "../../util/getLoginstatus";
-import { RegistrationHandler } from "../../entities/RegistrationManage";
-
-function checkIfFavorite(id: string) {
-  const registrationObj = RegistrationHandler.getRegisteredUsers();
-  if (!registrationObj) {
-    return false;
-  }
-
-  const user = registrationObj.find(
-    (user: { favorites: string[]; email: string }) =>
-      user.email === getLoginStatus(),
-  );
-  const isInFavorites = user ? user.favorites.includes(id) : false;
-
-  return isInFavorites;
-}
+import { checkIfFavorite } from "../../util/checkIfFavorite";
 
 export function Search() {
   const [searchParams] = useSearchParams();

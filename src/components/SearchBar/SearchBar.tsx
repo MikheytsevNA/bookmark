@@ -15,7 +15,10 @@ function SearchBar({ currentSearch }: { currentSearch: string }) {
   const [quickSearchVisibility, setQuickSearchVisibility] = useState(false);
 
   return (
-    <div className="search-container d-flex justify-content-center align-items-center input-group mb-3">
+    <div
+      className="d-flex justify-content-center align-items-center input-group mb-1 pb-2"
+      id="search-container"
+    >
       <div>
         <label className="mx-2">
           <input
