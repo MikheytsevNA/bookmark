@@ -38,10 +38,7 @@ function SearchBar({ currentSearch }: { currentSearch: string }) {
             }}
             onKeyDown={(event) => {
               if (event.key === "Enter") {
-                RegistrationHandler.changeHistory(
-                  getLoginStatus()!,
-                  debouncedSearch,
-                );
+                RegistrationHandler.changeHistory(getLoginStatus()!, search);
                 navigate(`/search?q=${search}&maxResults=${selectedOption}`);
               }
             }}
@@ -65,7 +62,7 @@ function SearchBar({ currentSearch }: { currentSearch: string }) {
       <button
         className="btn btn-outline-secondary mx-2 rounded"
         onClick={() => {
-          RegistrationHandler.changeHistory(getLoginStatus()!, debouncedSearch);
+          RegistrationHandler.changeHistory(getLoginStatus()!, search);
           navigate(`/search?q=${search}&maxResults=${selectedOption}`);
         }}
       >
