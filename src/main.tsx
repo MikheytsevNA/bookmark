@@ -16,7 +16,6 @@ import { Search } from "./components/Search/Search.tsx";
 import { store } from "./App/store.ts";
 
 import "./index.css";
-
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 
