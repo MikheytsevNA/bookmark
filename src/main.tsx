@@ -22,7 +22,7 @@ import "bootstrap/dist/js/bootstrap.bundle.min";
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: "/bookmark/",
     Component: function App() {
       return (
         <>
@@ -38,34 +38,34 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <Face /> },
       {
-        path: "/books/:id",
+        path: "/bookmark/books/:id",
         lazy: () => import("./components/Detailed/Detailed"),
       },
       {
-        path: "/search",
+        path: "/bookmark/search",
         element: <Search />,
       },
       {
-        path: "/signin",
+        path: "/bookmark/signin",
         element: <SignIn />,
         loader: logedOutLoader,
       },
       {
-        path: "/login",
+        path: "/bookmark/login",
         lazy: () => import("./components/Login/Login"),
       },
       {
-        path: "/logout",
+        path: "/bookmark/logout",
         element: <Logout />,
         loader: logedInLoader,
       },
       {
-        path: "/history",
+        path: "/bookmark/history",
         element: <History />,
         loader: logedInLoader,
       },
       {
-        path: "/favorites",
+        path: "/bookmark/favorites",
         element: <Favorites />,
         loader: logedInLoader,
       },
