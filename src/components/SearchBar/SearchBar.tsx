@@ -3,8 +3,11 @@ import { useNavigate } from "react-router-dom";
 import { useDebounce } from "../../util/useDebounce";
 import { QuickSearch } from "../QuickSearch/QuickSearch";
 import "./SearchBar.css";
+import { RegistrationHandler } from "../../entities/RegistrationManage";
+import { getLoginStatus } from "../../util/getLoginstatus";
+import PropTypes from "prop-types";
 
-export function SearchBar({ currentSearch }: { currentSearch: string }) {
+function SearchBar({ currentSearch }: { currentSearch: string }) {
   const navigate = useNavigate();
   const [search, setSearch] = useState(currentSearch);
   const debouncedSearch = useDebounce(search, 500);
@@ -12,7 +15,10 @@ export function SearchBar({ currentSearch }: { currentSearch: string }) {
   const [quickSearchVisibility, setQuickSearchVisibility] = useState(false);
 
   return (
-    <div className="search-container d-flex justify-content-center align-items-center input-group mb-3">
+    <div
+      className="d-flex justify-content-center align-items-center input-group mb-1 pb-2"
+      id="search-container"
+    >
       <div>
         <label className="mx-2">
           <input
@@ -32,9 +38,11 @@ export function SearchBar({ currentSearch }: { currentSearch: string }) {
             }}
             onKeyDown={(event) => {
               if (event.key === "Enter") {
-                navigate(
-                  `/search?q=${debouncedSearch}&maxResults=${selectedOption}`,
+                RegistrationHandler.changeHistory(
+                  getLoginStatus()!,
+                  debouncedSearch,
                 );
+                navigate(`/search?q=${search}&maxResults=${selectedOption}`);
               }
             }}
           ></input>
@@ -57,7 +65,8 @@ export function SearchBar({ currentSearch }: { currentSearch: string }) {
       <button
         className="btn btn-outline-secondary mx-2 rounded"
         onClick={() => {
-          navigate(`/search?q=${debouncedSearch}&maxResults=${selectedOption}`);
+          RegistrationHandler.changeHistory(getLoginStatus()!, debouncedSearch);
+          navigate(`/search?q=${search}&maxResults=${selectedOption}`);
         }}
       >
         Поиск
@@ -65,3 +74,9 @@ export function SearchBar({ currentSearch }: { currentSearch: string }) {
     </div>
   );
 }
+
+SearchBar.propTypes = {
+  name: PropTypes.string,
+};
+
+export default SearchBar;

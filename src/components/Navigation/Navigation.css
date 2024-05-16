@@ -1,8 +1,28 @@
 header {
+  overflow: hidden;
+  background-color: #fff;
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
+  width: 100%;
+  z-index: 3;
+}
+
+.theme-switch {
+  position: fixed;
+  top: 1rem;
+  left: 60%;
+}
+
+.container-fluid-dark {
+  background-color: #e5e5f7;
+  background: repeating-linear-gradient(
+    45deg,
+    rgba(48, 48, 48, 0.33),
+    rgba(169, 169, 169, 0.33) 5px,
+    rgba(229, 229, 247, 0.33) 5px,
+    rgba(255, 255, 255, 0.33) 25px
+  );
 }
 
 #book-logo {

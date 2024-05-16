@@ -8,6 +8,7 @@
     width: 60px;
     height: 90px;
     object-fit: cover;
+    z-index: 0;
   }
   div {
     width: 120px;
@@ -20,5 +21,9 @@
     right: 0;
     width: 20px;
     height: 20px;
+  }
+  .bookmark-heart:hover {
+    width: 24px;
+    height: 24px;
   }
 }

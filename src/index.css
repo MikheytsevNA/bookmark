@@ -35,6 +35,10 @@ h1 {
   line-height: 1.1;
 }
 
+main {
+  margin-top: 76px; /* Add a top margin to avoid content overlay */
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;

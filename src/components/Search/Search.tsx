@@ -1,8 +1,9 @@
 import { getSearchResultsString } from "../../util/getSearchResults";
 import { BookCard } from "../BookCard/BookCard";
-import { SearchBar } from "../SearchBar/SearchBar";
+import SearchBar from "../SearchBar/SearchBar";
 import { useSearchParams } from "react-router-dom";
 import { useGetVolumesQuery } from "../../App/apiSlice";
+import { checkIfFavorite } from "../../util/checkIfFavorite";
 
 export function Search() {
   const [searchParams] = useSearchParams();
@@ -26,7 +27,10 @@ export function Search() {
           ) : (
             data.map((item) => (
               <BookCard
-                item={{ ...item, isInFavorites: false }}
+                item={{
+                  ...item,
+                  isInFavorites: checkIfFavorite(item.id),
+                }}
                 key={item.id}
               ></BookCard>
             ))

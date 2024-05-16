@@ -3,7 +3,7 @@ import { BookData, rawBookData } from "../../entities/BookData";
 import { getRawSearchResults } from "../../util/getSearchResults";
 import { BookCard } from "../BookCard/BookCard";
 import "./SearchBooksCard.css";
-import { SearchBar } from "../SearchBar/SearchBar";
+import SearchBar from "../SearchBar/SearchBar";
 
 type SearchBookCardsProps = { searchQuery: string };
 

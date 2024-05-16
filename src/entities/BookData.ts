@@ -1,3 +1,5 @@
+import { checkIfFavorite } from "../util/checkIfFavorite";
+
 interface Book {
   id: string;
   images: { small: string; big: string };
@@ -39,5 +41,6 @@ export class BookData implements Book {
       small: data.volumeInfo.imageLinks.smallThumbnail,
       big: data.volumeInfo.imageLinks.thumbnail,
     };
+    this.isInFavorites = checkIfFavorite(this.id);
   }
 }
