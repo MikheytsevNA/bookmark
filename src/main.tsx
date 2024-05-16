@@ -1,6 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { Provider } from "react-redux";
+import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
+import { ErrorBoundary } from "react-error-boundary";
 
 import Face from "./components/Face/Face.tsx";
 import { Navigation } from "./components/Navigation/Navigation.tsx";
@@ -15,8 +17,6 @@ import { store } from "./App/store.ts";
 
 import "./index.css";
 
-import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
-
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 
@@ -28,7 +28,9 @@ const router = createBrowserRouter([
         <>
           <Navigation />
           <main>
-            <Outlet />
+            <ErrorBoundary fallback={<div>Что-то пошло не так</div>}>
+              <Outlet />
+            </ErrorBoundary>
           </main>
         </>
       );
