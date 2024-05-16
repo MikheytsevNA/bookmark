@@ -41,7 +41,11 @@ export function BookCard({ item }: BookCardProps) {
         className={`bookmark-heart ${throttledStatus ? "bg-info" : ""}`}
         onClick={(event) => {
           event.stopPropagation();
-          setFavStatus((state: boolean) => !state);
+          if (!loggedInEmail) {
+            navigate("/login");
+          } else {
+            setFavStatus((state: boolean) => !state);
+          }
         }}
       ></img>
     </li>
