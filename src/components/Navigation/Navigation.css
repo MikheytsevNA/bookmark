@@ -11,7 +11,7 @@ header {
 .theme-switch {
   position: fixed;
   top: 1rem;
-  left: 60%;
+  left: 50%;
 }
 
 .container-fluid-dark {
