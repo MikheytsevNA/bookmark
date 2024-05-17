@@ -15,7 +15,6 @@ export function Component() {
       <Formik
         initialValues={{ email: "", password: "" }}
         onSubmit={async (values, { setSubmitting }) => {
-          localStorage.setItem("loggedInEmail", values.email);
           dispatch(login(values.email));
           setSubmitting(false);
           navigate("/");

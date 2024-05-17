@@ -32,7 +32,7 @@ export class BookData implements Book {
   public isInFavorites = false;
 
   constructor(data: rawBookData) {
-    this.id = data.id as string;
+    this.id = data.id;
     this.title = data.volumeInfo.title;
     this.description = data.volumeInfo.description;
     this.published = data.volumeInfo.publishedDate;
