@@ -13,7 +13,6 @@ export function SignIn() {
         initialValues={{ email: "", password: "" }}
         onSubmit={async (values, { setSubmitting }) => {
           new RegistrationHandler({ ...values, favorites: [], history: [] });
-          await localStorage.setItem("loggedInEmail", values.email);
           dispatch(login(values.email));
           setSubmitting(false);
           navigate("/");

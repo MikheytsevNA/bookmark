@@ -6,9 +6,19 @@ export const navbarSlice = createSlice({
     value: localStorage.getItem("loggedInEmail"),
   },
   reducers: {
-    login: (_, action) => ({ value: action.payload }),
-    logout: (_, action) => ({ value: action.payload }),
+    login: (_, action) => {
+      localStorage.setItem("loggedInEmail", action.payload);
+      return { value: action.payload };
+    },
+    logout: (_, action) => {
+      localStorage.removeItem("loggedInEmail");
+      return { value: action.payload };
+    },
+  },
+  selectors: {
+    getLoginState: (state) => state.value,
   },
 });
 
 export const { login, logout } = navbarSlice.actions;
+export const { getLoginState } = navbarSlice.selectors;
